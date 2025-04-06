@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+.body-background{
+    background-image: url(../public/image/body-bg.jpg);
+    height: 100vh;
+    background-size: cover;
+}
+
+.bg-shade{
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+}
