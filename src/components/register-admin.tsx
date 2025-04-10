@@ -11,14 +11,12 @@ export function RegisterAdmin(){
       username:'',
       fullName:'',
       password:'',
-      email:'',
-      mobile:'',
-
+      email:''
     },
-    onSubmit:(user)=>{
-      axios.post("http://localhost:5050/api/v1/users/register", user)
-      alert("Register successfully")
-      navigate("/user-login")
+    onSubmit:(admin)=>{
+      axios.post("http://localhost:5050/api/v1/admins/register", admin)
+      alert("Admin register successfully")
+      navigate("/admin-login")
 
     }
   })
