@@ -9,13 +9,14 @@ import { UserDash } from './components/user-dash'
 import { AddVideo } from './components/add-video'
 import { EditVideo } from './components/edit-video'
 import { DeleteVideo } from './components/delete-video'
+import { RegisterAdmin } from './components/register-admin'
 
 function App() {
   return (
     <div className='body-background' >
       <div className='bg-shade'>
       <BrowserRouter>
-        <header className='p-4 flex justify-center text-4xl font-medium text-white  text-center '><span>Technologies  Video Library </span> 
+        <header className='p-4 flex justify-center text-4xl font-medium text-white  text-center'><span>Tech Video Library </span> 
         </header>
         <section className='mt-4'>
           <Routes>
@@ -24,6 +25,7 @@ function App() {
             <Route path="/admin-login" element={<AdminLogin/>}/>
             <Route path='/admin-dash' element={<AdminDash/>}/>
             <Route path='/register-user' element={<RegisterUser/>}/>
+            <Route path='/register-admin' element={<RegisterAdmin/>} />
             <Route path='/user-dash' element={<UserDash/>} />
             <Route path='/add-video' element={<AddVideo/>} />
             <Route path='/edit-video/:id' element={<EditVideo/>} />

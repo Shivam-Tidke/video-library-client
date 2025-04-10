@@ -27,7 +27,7 @@ export function UserDash(){
     };
 
     useEffect(()=>{
-        axios.get("sdf", {
+        axios.get("http://localhost:5050/api/v1/videos", {
             withCredentials:true
         })
         .then(response=>{

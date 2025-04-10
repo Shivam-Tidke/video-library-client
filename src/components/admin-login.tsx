@@ -47,6 +47,9 @@ export function AdminLogin(){
              <button  className="btnSuccess" >Login</button>
              <Link to="/"><button className="btnError ml-3" >Cancel</button></Link>
              </div>
+             <div className="mt-4 p">
+                <Link to="/register-admin"><button className="py-0.5 rounded  px-4 bg-cyan-800 text-white hover:drop-shadow-lg hover:-translate-y-1 hover:scale-105 hover:bg-cyan-900 transition duration-150 ease-in-out"  >Register New User!</button></Link>
+             </div>
 
             </form>
         </div>
