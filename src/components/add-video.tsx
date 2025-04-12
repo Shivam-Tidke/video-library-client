@@ -10,18 +10,17 @@ export function AddVideo(){
 
     const formik = useFormik({
         initialValues:{
-            VideoId:0,
             Title:'',
             URL:'',
             Description:'',
             Likes:0,
-            DisLikes:0,
+            Dislikes:0,
             Views:0,
-            CategoryId:0,
+            CategoryId:"-1"
         
         },
         onSubmit:(video)=>{
-            axios.post('http://127.0.0.1:5050/add-video', video)
+            axios.post('http://localhost:5050/api/v1/videos/register', video)
             .then(()=>{
                 alert("Video Added Successfully");
                 navigate('/admin-dash')
@@ -31,10 +30,16 @@ export function AddVideo(){
     })
 
     function loadCategories(){
-        axios.get('http://127.0.0.1:5050/get-categories')
+        axios.get('http://localhost:5050/api/v1/category')
         .then(response=>{
-            response.data.unshift({CategoryId:"-1", CategoryName:'Select a Category'});
-            setCategories(response.data);
+
+            const formated = response.data.data.map((category:any)=>({
+                CategoryId: category._id,
+                CategoryName: category.name
+
+            }));
+            formated.unshift({CategoryId:"-1", CategoryName:'Select a Category'});
+            setCategories(formated);
         })
     }
 
@@ -46,8 +51,7 @@ export function AddVideo(){
             <form onSubmit={formik.handleSubmit}>
                 <label className="text-2xl font-bold text-gray-500 flex justify-center "> Add New Video</label>
                 <dl>
-                    <dt className="text-base font-bold text-gray-500 drop-shadow-lg my-3" >Video Id</dt>
-                    <dd><input type="number" className="formControl" name="VideoId" onChange={formik.handleChange}/></dd>
+            
                     <dt className="text-base font-bold text-gray-500 drop-shadow-lg  my-3">Video Title</dt>
                     <dd><input type="text" className="formControl" name="Title" onChange={formik.handleChange} /></dd>
                     <dt className="text-base font-bold text-gray-500 drop-shadow-lg my-3">URL</dt>
@@ -64,7 +68,7 @@ export function AddVideo(){
                     <dd><input type="number" className="formControl"  name="Views" onChange={formik.handleChange} /></dd>
                     <dt className="text-base font-bold text-gray-500 drop-shadow-lg my-2">Select a Category</dt>
                     <dd>
-                        <select className="formControl" name="CategoryId" onChange={formik.handleChange} >
+                        <select className="formControl" name="CategoryId" onChange={formik.handleChange} value={formik.values.CategoryId}  >
                             {
                                 categories?.map(category=>
                                     <option value={category.CategoryId} key={category.CategoryId}>{category.CategoryName}</option>

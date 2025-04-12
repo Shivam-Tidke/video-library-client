@@ -13,9 +13,11 @@ export function AdminDash(){
     const navigate = useNavigate();
 
     function LoadVideo():void{
-        axios.get("http://127.0.0.1:5050/get-videos")
+        axios.get("http://localhost:5050/api/v1/videos")
         .then(response=>{
-            setVideos(response.data)
+            setVideos(response.data.data
+
+            )
         })
     }
 
@@ -48,12 +50,12 @@ export function AdminDash(){
                 <tbody>
                     {
                         videos?.map(video=>
-                            <tr key={video.VideoId} className="border-t bg-gray-100">
+                            <tr key={video._id} className="border-t bg-gray-100">
                                 <td className="py-2 px-4">{video.Title}</td>
                                 <td className="py-2 px-4"><iframe src={video.URL} width="200" height="100" ></iframe></td>
                                 <td className="flex justify-center items-center h-32 px-4 py-2 ">
-                                    <Link to={`/edit-video/${video.VideoId}`} ><  IoPencil className="mr-4 text-2xl"/></Link>
-                                    <Link to={`/delete-video/${video.VideoId}`}>< IoTrashBin className="mr-4 text-2xl"/></Link>
+                                    <Link to={`/edit-video/${video._id}`} ><  IoPencil className="mr-4 text-2xl"/></Link>
+                                    <Link to={`/delete-video/${video._id}`}>< IoTrashBin className="mr-4 text-2xl"/></Link>
                                 </td>
                             </tr>
                         )

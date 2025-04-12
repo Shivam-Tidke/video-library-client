@@ -1,12 +1,12 @@
 export interface VideoContract
 {
-    VideoId:number;
+    _id:string;
     Title:string;
     URL:string;
     Description:string;
     Likes:number;
     Dislikes:number;
     Comments:string[];
-    CategoryId:number;
+    CategoryId:string;
     Views:number;
 }

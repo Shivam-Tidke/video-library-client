@@ -3,27 +3,28 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { CategoriesContract } from "../contract/categoreisContract";
 import { useFormik } from "formik";
 import axios from "axios";
+import { VideoContract } from "../contract/videoContract";
 
 export function EditVideo(){
     const [categories, setCategories] = useState<CategoriesContract[]>();
-    const [video, setVideo] = useState([{VideoId:0, Title:'', URL:'', Description:'', Likes:0, Dislikes:0,Views:0, Comments:[''], CategoryId:0}])
+    const [video, setVideo] = useState<VideoContract>({ _id:"", Title:'', URL:'', Description:'', Likes:0, Dislikes:0,Views:0, Comments:[], CategoryId:""})
 
     let param =useParams();
     let navigate = useNavigate();
     const formik = useFormik({
         initialValues:{
-            VideoId:video[0].VideoId,
-            Title:video[0].Title,
-            URL:video[0].URL,
-            Description:video[0].Description,
-            Likes:video[0].Likes,
-            Dislikes:video[0].Dislikes,
-            Views:video[0].Views,
-            CategoryId:video[0].CategoryId
+            _id:video._id,
+            Title:video.Title,
+            URL:video.URL,
+            Description:video.Description,
+            Likes:video.Likes,
+            Dislikes:video.Dislikes,
+            Views:video.Views,
+            CategoryId:video.CategoryId
 
         },
         onSubmit:(values)=>{
-            axios.put(`http://127.0.0.1:5050/edit-video/${param.id}`, values);
+            axios.put(`http://localhost:5050/api/v1/videos/edit-video/${param.id}`, values);
             alert("Video Edited Successfully")
             navigate("/admin-dash")
         },
@@ -32,18 +33,23 @@ export function EditVideo(){
     
 
     function loadCategories(){
-        axios.get('http://127.0.0.1:5050/get-categories')
+        axios.get('http://localhost:5050/api/v1/category')
         .then(response=>{
-            response.data.unshift({CategoryId:-1, CategoryName:'Select a Category'});
-            setCategories(response.data);  
+
+            const formated = response.data.data.map((category:any)=>({
+                CategoryId: category._id,
+                CategoryName: category.name
+            }));
+            formated.unshift({CategoryId:"-1", CategoryName:'Select a Category'});
+            setCategories(formated);
         })
     }
 
     useEffect(()=>{
         loadCategories()
-        axios.get(`http://127.0.0.1:5050/get-video/${param.id}`)
+        axios.get(`http://localhost:5050/api/v1/videos/get-video/${param.id}`)
         .then(response=>{
-            setVideo(response.data)
+            setVideo(response.data.data)
         })
 
     },[])
@@ -53,8 +59,7 @@ export function EditVideo(){
             <form onSubmit={formik.handleSubmit}>
                 <label className="text-2xl font-bold text-gray-500 flex justify-center ">Edit Video</label>
                 <dl>
-                    <dt className="text-base font-bold text-gray-500 drop-shadow-lg my-3" >Video Id</dt>
-                    <dd><input value={formik.values.VideoId} type="number" className="formControl" name="VideoId" onChange={formik.handleChange}/></dd>
+                   
                     <dt className="text-base font-bold  text-gray-500 drop-shadow-lg  my-3">Video Title</dt>
                     <dd><input type="text" value={formik.values.Title} className="formControl" name="Title" onChange={formik.handleChange} /></dd>
                     <dt className="text-base font-bold text-gray-500 drop-shadow-lg my-3">URL</dt>
@@ -84,7 +89,7 @@ export function EditVideo(){
 
                 
                 <div className="mt-8">
-             <button className="btnSuccess" >Add</button>
+             <button type="submit" className="btnSuccess" >Update</button>
              <Link to="/admin-dash"><button className="btnError ml-4" >Cancel</button></Link>
              </div>
             </form>

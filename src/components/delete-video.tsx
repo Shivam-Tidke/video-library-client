@@ -3,19 +3,19 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 export function DeleteVideo(){
-    const [vid, setVid] =   useState([{VideoId:0, Title:'', Description:'' }])
+    const [vid, setVid] =   useState({_id:"", Title:"", Description:"" })
     let param = useParams();
     let navigate = useNavigate();
 
     useEffect(()=>{
-        axios.get(`http://127.0.0.1:5050/get-video/${param.id}`)
+        axios.get(`http://localhost:5050/api/v1/videos/get-video/${param.id}`)
         .then(response=>{
-            setVid(response.data);
+            setVid(response.data.data);
         })
     },[])
 
     function handleDeleteClick(){
-        axios.delete(`http://127.0.0.1:5050/delete-video/${param.id}`)
+        axios.delete(`http://localhost:5050/api/v1/videos/delete-video/${param.id}`)
         navigate('/admin-dash')
     }
     return(
@@ -23,8 +23,8 @@ export function DeleteVideo(){
             <h3 className="text-gray-500 drop-shadow-lg font-bold text-base ">Are you sure, want to delete?</h3>
             <dl>
                 <dt >Title</dt>
-                <dd className="text-gray-500 py-4 font-bold drop-shadow-lg">{vid[0].Title}</dd>
-                <dd className="text-gray-500 py-4 font-bold drop-shadow-lg">{vid[0].Description}</dd>
+                <dd className="text-gray-500 py-4 font-bold drop-shadow-lg">{vid.Title}</dd>
+                <dd className="text-gray-500 py-4 font-bold drop-shadow-lg">{vid.Description}</dd>
             
             </dl>
             <button onClick={handleDeleteClick} className="btnError mr-5">Delete</button>

@@ -17,7 +17,7 @@ export function RegisterUser(){
     },
     onSubmit:(user)=>{
       axios.post("http://localhost:5050/api/v1/users/register", user)
-      alert("Register successfully")
+      alert("User register successfully")
       navigate("/user-login")
 
     }
