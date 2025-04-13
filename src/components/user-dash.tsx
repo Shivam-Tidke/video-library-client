@@ -7,7 +7,7 @@ import { IoIosEye, IoIosThumbsDown, IoIosThumbsUp } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
 
 export function UserDash(){
-    const [cookie, removeCookie] = useCookies(['username']);
+    const [cookie, _, removeCookie] = useCookies(['username']);
     const [videos, setVideos] = useState<VideoContract[]> ();
     
     let navigate = useNavigate();
