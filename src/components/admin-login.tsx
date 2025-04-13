@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export function AdminLogin() {
     let navigate = useNavigate();
-    const [_, setCookie] = useCookies(['admin-id']);
+    const [, setCookie] = useCookies(['admin-id']);
 
     const formik = useFormik({
         initialValues: {
