@@ -13,7 +13,7 @@ export function AdminDash(){
     const navigate = useNavigate();
 
     function LoadVideo():void{
-        axios.get("http://localhost:5050/api/v1/videos")
+        axios.get("https://video-library-server.onrender.com/api/v1/videos")
         .then(response=>{
             setVideos(response.data.data
 
@@ -23,7 +23,7 @@ export function AdminDash(){
 
     function handlesignout(){
         try {
-            axios.post("http://localhost:5050/api/v1/admins/logout", {},{
+            axios.post("https://video-library-server.onrender.com/api/v1/admins/logout", {},{
                 withCredentials:true
             })
             removeCookie('admin-id');

@@ -14,7 +14,7 @@ export function UserDash(){
 
     const handlesignout = async ()=>{
         try {
-            await axios.post("http://localhost:5050/api/v1/users/logout", {},{
+            await axios.post("https://video-library-server.onrender.com/api/v1/users/logout", {},{
                 withCredentials:true
             })
 

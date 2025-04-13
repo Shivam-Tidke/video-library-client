@@ -20,7 +20,7 @@ export function AddVideo(){
         
         },
         onSubmit:(video)=>{
-            axios.post('http://localhost:5050/api/v1/videos/register', video)
+            axios.post('https://video-library-server.onrender.com/videos/register', video)
             .then(()=>{
                 alert("Video Added Successfully");
                 navigate('/admin-dash')
@@ -30,7 +30,7 @@ export function AddVideo(){
     })
 
     function loadCategories(){
-        axios.get('http://localhost:5050/api/v1/category')
+        axios.get('https://video-library-server.onrender.com/api/v1/category')
         .then(response=>{
 
             const formated = response.data.data.map((category:any)=>({

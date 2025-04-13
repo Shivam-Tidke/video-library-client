@@ -16,7 +16,7 @@ export function RegisterUser(){
 
     },
     onSubmit:(user)=>{
-      axios.post("http://localhost:5050/api/v1/users/register", user)
+      axios.post("https://video-library-server.onrender.com/api/v1/users/register", user)
       alert("User register successfully")
       navigate("/user-login")
 

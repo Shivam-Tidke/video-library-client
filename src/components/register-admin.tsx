@@ -14,7 +14,7 @@ export function RegisterAdmin(){
       email:''
     },
     onSubmit:(admin)=>{
-      axios.post("http://localhost:5050/api/v1/admins/register", admin)
+      axios.post("https://video-library-server.onrender.com/api/v1/admins/register", admin)
       alert("Admin register successfully")
       navigate("/admin-login")
 
