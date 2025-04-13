@@ -22,8 +22,15 @@ export function AdminDash(){
     }
 
     function handlesignout(){
-        removeCookie('admin-id');
-        navigate("/")
+        try {
+            axios.post("http://localhost:5050/api/v1/admins/logout", {},{
+                withCredentials:true
+            })
+            removeCookie('admin-id');
+            navigate("/")
+        } catch (error) {
+            console.log("Logout Failed", error );
+        }
     }
 
     useEffect(()=>{

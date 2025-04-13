@@ -1,6 +1,6 @@
 
 
 export interface AdminContract{
-    UserId:string;
-    Password:string;
+    username:string;
+    password:string;
 }
