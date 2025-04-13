@@ -8,7 +8,7 @@ import axios from "axios";
 
 export function AdminDash(){
     const [videos, setVideos] = useState<VideoContract[]>();
-    const [cookies, setCookie, removeCookie] = useCookies(['admin-id'])
+    const [cookies, , removeCookie] = useCookies(['admin-id'])
 
     const navigate = useNavigate();
 
