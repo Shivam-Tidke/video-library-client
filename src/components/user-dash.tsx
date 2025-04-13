@@ -7,7 +7,7 @@ import { IoIosEye, IoIosThumbsDown, IoIosThumbsUp } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
 
 export function UserDash(){
-    const [cookie, , removeCookie] = useCookies(['admin-id']);
+    const [cookie, , removeCookie] = useCookies(['username']);
     const [videos, setVideos] = useState<VideoContract[]> ();
     
     let navigate = useNavigate();
@@ -18,7 +18,7 @@ export function UserDash(){
                 withCredentials:true
             })
 
-            removeCookie("admin-id", {path:"/"});
+            removeCookie("username", {path:"/"});
             navigate("/user-login")
         } catch (error) {
             console.log("logout failed", error);
