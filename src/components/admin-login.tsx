@@ -33,7 +33,7 @@ export function AdminLogin() {
                 const admindata = response.data?.data?.admin;
 
                 if (admindata) {
-                    setCookie("admin-id", admin.username, { path: "/" })
+                    setCookie("admin-id", admindata.username, { path: "/" })
                     navigate('/admin-dash')
                 }
 
