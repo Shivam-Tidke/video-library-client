@@ -24,7 +24,7 @@ export function EditVideo(){
 
         },
         onSubmit:(values)=>{
-            axios.put(`https://video-library-server.onrender.com/api/v1/videos/edit-video/${param.id}`, values);
+            axios.put(`http://localhost:5050/api/v1/videos/edit-video/${param.id}`, values);
             alert("Video Edited Successfully")
             navigate("/admin-dash")
         },
@@ -33,7 +33,7 @@ export function EditVideo(){
     
 
     function loadCategories(){
-        axios.get('https://video-library-server.onrender.com/api/v1/category')
+        axios.get('http://localhost:5050/api/v1/category')
         .then(response=>{
 
             const formated = response.data.data.map((category:any)=>({
@@ -47,7 +47,7 @@ export function EditVideo(){
 
     useEffect(()=>{
         loadCategories()
-        axios.get(`https://video-library-server.onrender.com/api/v1/videos/get-video/${param.id}`)
+        axios.get(`http://localhost:5050/api/v1/videos/get-video/${param.id}`)
         .then(response=>{
             setVideo(response.data.data)
         })

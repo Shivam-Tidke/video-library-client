@@ -1,3 +1,6 @@
+
+
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -8,14 +11,14 @@ export function DeleteVideo(){
     let navigate = useNavigate();
 
     useEffect(()=>{
-        axios.get(`https://video-library-server.onrender.com/api/v1/videos/get-video/${param.id}`)
+        axios.get(`http://localhost:5050/api/v1/videos/get-video/${param.id}`)
         .then(response=>{
             setVid(response.data.data);
         })
     },[])
 
     function handleDeleteClick(){
-        axios.delete(`https://video-library-server.onrender.com/api/v1/videos/delete-video/${param.id}`)
+        axios.delete(`http://localhost:5050/api/v1/videos/delete-video/${param.id}`)
         navigate('/admin-dash')
     }
     return(

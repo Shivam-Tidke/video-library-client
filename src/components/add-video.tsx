@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { CategoriesContract } from "../contract/categoreisContract";
+import { CategoriesContract } from "../contract/categoreisContract.ts";
 import { useFormik } from "formik";
 import axios from "axios";
 
@@ -20,7 +20,7 @@ export function AddVideo(){
         
         },
         onSubmit:(video)=>{
-            axios.post('https://video-library-server.onrender.com/videos/register', video)
+            axios.post('http://localhost:5050/api/v1/videos/register', video)
             .then(()=>{
                 alert("Video Added Successfully");
                 navigate('/admin-dash')
@@ -30,7 +30,7 @@ export function AddVideo(){
     })
 
     function loadCategories(){
-        axios.get('https://video-library-server.onrender.com/api/v1/category')
+        axios.get('http://localhost:5050/api/v1/category')
         .then(response=>{
 
             const formated = response.data.data.map((category:any)=>({
@@ -81,7 +81,7 @@ export function AddVideo(){
 
                 
                 <div className="mt-8">
-             <button className="btnSuccess" >Add</button>
+             <button type="submit" className="btnSuccess" >Add</button>
              <Link to="/admin-dash"><button className="btnError ml-4" >Cancel</button></Link>
              </div>
             </form>

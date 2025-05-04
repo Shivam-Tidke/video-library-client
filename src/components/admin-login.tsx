@@ -17,7 +17,7 @@ export function AdminLogin() {
 
             try {
                 const response = await axios.post(
-                    "https://video-library-server.onrender.com/api/v1/admins/login",
+                    "http://localhost:5050/api/v1/admins/login",
                     {
                         username: admin.username,
                         password: admin.password
