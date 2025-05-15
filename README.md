@@ -4,7 +4,7 @@ A full-stack video library platform that allows users to browse, watch, and mana
 
 ### Related Repositories
 - Frontend (React with TS + Vite): [This repo]
-- Backend (Express + MongoDB Atlas): [ProductionBackend Repo](https://github.com/Shivam-Tidke/ProductionBackend)
+- Backend (Express + MongoDB Atlas): [Backend Repository](https://github.com/Shivam-Tidke/ProductionBackend)
 
 ## Features
 
