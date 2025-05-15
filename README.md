@@ -2,7 +2,9 @@
 
 A full-stack video library platform that allows users to browse, watch, and manage videos with role-based access control, built using the MERN stack and Tailwind CSS.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Related Repositories
+- Frontend (React with TS + Vite): [This repo]
+- Backend (Express + MongoDB Atlas): [ProductionBackend Repo](https://github.com/Shivam-Tidke/ProductionBackend)
 
 ## Features
 
